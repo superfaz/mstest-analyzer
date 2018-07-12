@@ -248,7 +248,6 @@ namespace MSTest.Analyzer.Helpers
                 }
                 else
                 {
-                    VerifyDiagnosticLocation(analyzer, actual, actual.Location, expected.Locations.First());
                     var additionalLocations = actual.AdditionalLocations.ToArray();
 
                     if (additionalLocations.Length != expected.Locations.Count() - 1)
@@ -263,8 +262,16 @@ namespace MSTest.Analyzer.Helpers
                     int j = 0;
                     foreach (var location in expected.Locations)
                     {
+                        if (j == 0)
+                        {
+                            VerifyDiagnosticLocation(analyzer, actual, actual.Location, location);
+                        }
+                        else
+                        {
+                            VerifyDiagnosticLocation(analyzer, actual, additionalLocations[j - 1], location);
+                        }
+
                         j++;
-                        VerifyDiagnosticLocation(analyzer, actual, additionalLocations[j], location);
                     }
                 }
 
