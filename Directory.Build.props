@@ -1,0 +1,59 @@
+<Project>
+
+  <!-- Shared information for all assemblies -->
+  <PropertyGroup>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <Product>mstest-analyzer</Product>
+    <Authors>Francois Karman</Authors>
+    <Version>0.1.0</Version>
+    <Company />
+
+    <Copyright>Copyright (c) 2018 Francois Karman. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://github.com/superfaz/mstest-analyzer/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/superfaz/mstest-analyzer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/superfaz/mstest-analyzer.git</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>MSTest DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
+  </PropertyGroup>
+
+  <!-- Ensure signature of all assemblies -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../Project.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <!-- Activate fxcop -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1" />
+  </ItemGroup>
+  <PropertyGroup Condition=" !$(MSBuildProjectName.EndsWith('.Tests')) ">
+    <CodeAnalysisRuleSet>../../Standard.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <!-- Activate stylecop -->
+  <ItemGroup>
+    <AdditionalFiles Include="../../stylecop.json" Link="stylecop.json" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+
+  <!-- Define specific rules for test projects -->
+  <PropertyGroup Condition=" $(MSBuildProjectName.EndsWith('.Tests')) ">
+    <!-- Specific fxcop configuration -->
+    <CodeAnalysisRuleSet>../../Test.ruleset</CodeAnalysisRuleSet>
+    <!-- Ensure proper root namespace for the test project -->
+    <RootNamespace>$(MSBuildProjectName.Replace('.Tests', ''))</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup Condition=" $(MSBuildProjectName.EndsWith('.Tests')) ">
+    <!-- Activate code coverage -->
+    <PackageReference Include="coverlet.msbuild" Version="2.1.0" />
+  </ItemGroup>
+
+  <!-- External build configuration -->
+  <ItemGroup Condition=" $(MSBuildProjectName.EndsWith('.Tests')) and '$(APPVEYOR)' == 'true' ">
+    <PackageReference Include="Appveyor.TestLogger" Version="2.0.0" />
+  </ItemGroup>
+  <PropertyGroup Condition=" $(MSBuildProjectName.EndsWith('.Tests')) and '$(APPVEYOR)' == 'true' ">
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSTest.Analyzer", "src\MSTest.Analyzer\MSTest.Analyzer.csproj", "{7E615984-A2D0-48F3-94B1-19A50D48B6FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSTest.Analyzer.Tests", "test\MSTest.Analyzer.Tests\MSTest.Analyzer.Tests.csproj", "{77F925D9-5DCC-40AB-B9EF-175C21965336}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E38356F-4470-4C10-B764-8B4CDCA5C800}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		LICENSE = LICENSE
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E615984-A2D0-48F3-94B1-19A50D48B6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E615984-A2D0-48F3-94B1-19A50D48B6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E615984-A2D0-48F3-94B1-19A50D48B6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E615984-A2D0-48F3-94B1-19A50D48B6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77F925D9-5DCC-40AB-B9EF-175C21965336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F925D9-5DCC-40AB-B9EF-175C21965336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F925D9-5DCC-40AB-B9EF-175C21965336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F925D9-5DCC-40AB-B9EF-175C21965336}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93499E4E-C275-48F4-8CB0-112858D8F933}
+	EndGlobalSection
+EndGlobal
