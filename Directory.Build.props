@@ -2,10 +2,11 @@
 
   <!-- Shared information for all assemblies -->
   <PropertyGroup>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <Version>0.1.0</Version>
     <Product>mstest-analyzer</Product>
     <Authors>Francois Karman</Authors>
-    <Version>0.1.0</Version>
+    <AssemblyVersion>$(Version).0</AssemblyVersion>
+    <PackageVersion>$(Version)</PackageVersion>
     <Company />
 
     <Copyright>Copyright (c) 2018 Francois Karman. All rights reserved.</Copyright>
@@ -13,7 +14,6 @@
     <PackageProjectUrl>https://github.com/superfaz/mstest-analyzer</PackageProjectUrl>
     <RepositoryUrl>https://github.com/superfaz/mstest-analyzer.git</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
-    <PackageTags>MSTest DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
   </PropertyGroup>
 
   <!-- Ensure signature of all assemblies -->
