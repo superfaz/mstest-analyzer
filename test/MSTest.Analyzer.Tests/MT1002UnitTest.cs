@@ -6,7 +6,6 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Analyzer.Helpers;
-using System;
 
 namespace MSTest.Analyzer
 {

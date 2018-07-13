@@ -24,7 +24,7 @@ namespace MSTest.Analyzer
         /// <summary>
         /// The namespace associated with the MSTest library.
         /// </summary>
-        public const string MSTestNamespace = "Microsoft.VisualStudio.TestTools.UnitTesting";
+        public static readonly string MSTestNamespace = "Microsoft.VisualStudio.TestTools.UnitTesting";
 
         /// <inheritdoc />
         public sealed override ImmutableArray<string> FixableDiagnosticIds

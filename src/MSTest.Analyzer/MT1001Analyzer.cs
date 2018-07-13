@@ -17,7 +17,7 @@ namespace MSTest.Analyzer
         /// <summary>
         /// The ID for diagnostics produced by the <see cref="MT1001Analyzer"/> analyzer.
         /// </summary>
-        public const string DiagnosticId = "MT1001";
+        public static readonly string DiagnosticId = "MT1001";
 
         /// <summary>
         /// The title of the rule.
