@@ -88,7 +88,7 @@ namespace MSTest.Analyzer
             // Add the using directive
             root = AddTestUsingDirective(root);
 
-            return document.WithSyntaxRoot(root.NormalizeWhitespace());
+            return document.WithSyntaxRoot(root);
         }
     }
 }

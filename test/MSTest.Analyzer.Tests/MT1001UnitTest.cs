@@ -61,7 +61,7 @@ using System;
 namespace TestPackage
 {
     public class TypeName
-    {   
+    {
     }
 }";
             var expected = new DiagnosticResult
@@ -82,7 +82,7 @@ namespace TestPackage
 {
     [TestClass]
     public class TypeName
-    {   
+    {
     }
 }";
             this.VerifyCSharpFix(test, fixtest);
