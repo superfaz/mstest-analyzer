@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace MSTest.Analyzer
 {
     /// <summary>
-    /// Provide code fix for the <see cref="MT1001PublicClassShouldHaveTestAttribute"/> analyzer.
+    /// Provide code fix for the <see cref="MT1001Analyzer"/> analyzer.
     /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(MT1001CodeFixProvider))]
     [Shared]
@@ -29,7 +29,7 @@ namespace MSTest.Analyzer
         /// <inheritdoc />
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(MT1001PublicClassShouldHaveTestAttribute.DiagnosticId); }
+            get { return ImmutableArray.Create(MT1001Analyzer.DiagnosticId); }
         }
 
         /// <summary>

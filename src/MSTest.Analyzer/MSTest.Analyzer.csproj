@@ -23,7 +23,7 @@
     <Compile Update="MT1001CodeFixProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MT1001PublicClassShouldHaveTestAttribute.cs">
+    <Compile Update="MT1001Analyzer.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

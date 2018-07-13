@@ -12,10 +12,10 @@ namespace MSTest.Analyzer
     /// Checks that all (concrete) public classes of a test project are marked with the [TestClass] attribute.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class MT1001PublicClassShouldHaveTestAttribute : DiagnosticAnalyzer
+    public class MT1001Analyzer : DiagnosticAnalyzer
     {
         /// <summary>
-        /// The ID for diagnostics produced by the <see cref="MT1001PublicClassShouldHaveTestAttribute"/> analyzer.
+        /// The ID for diagnostics produced by the <see cref="MT1001Analyzer"/> analyzer.
         /// </summary>
         public const string DiagnosticId = "MT1001";
 

@@ -11,7 +11,7 @@ using System;
 namespace MSTest.Analyzer
 {
     /// <summary>
-    /// Tests the <see cref="MT1001PublicClassShouldHaveTestAttribute"/> analyzer
+    /// Tests the <see cref="MT1001Analyzer"/> analyzer
     /// as well as the associated <see cref="MT1001CodeFixProvider"/> code fixer.
     /// </summary>
     [TestClass]
@@ -92,11 +92,11 @@ namespace TestPackage
         /// Creates a new instance of the CSharp diagnostic analyzer begin tested.
         /// </summary>
         /// <returns>
-        /// A new instance of <see cref="MT1001PublicClassShouldHaveTestAttribute"/>.
+        /// A new instance of <see cref="MT1001Analyzer"/>.
         /// </returns>
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new MT1001PublicClassShouldHaveTestAttribute();
+            return new MT1001Analyzer();
         }
 
         /// <summary>
