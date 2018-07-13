@@ -127,7 +127,7 @@ namespace MSTest.Analyzer.Helpers
         /// <param name="expected"> DiagnosticResults that should appear after the analyzer is run on the source</param>
         protected void VerifyCSharpDiagnostic(string source, params DiagnosticResult[] expected)
         {
-            this.VerifyDiagnostics(new[] { source }, this.GetCSharpDiagnosticAnalyzer(), expected);
+            this.VerifyCSharpDiagnostic(new[] { source }, expected);
         }
 
         /// <summary>
@@ -138,7 +138,9 @@ namespace MSTest.Analyzer.Helpers
         /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources</param>
         protected void VerifyCSharpDiagnostic(string[] sources, params DiagnosticResult[] expected)
         {
-            this.VerifyDiagnostics(sources, this.GetCSharpDiagnosticAnalyzer(), expected);
+            var analyzer = this.GetCSharpDiagnosticAnalyzer();
+            var diagnostics = GetSortedDiagnostics(sources, analyzer);
+            VerifyDiagnosticResults(diagnostics, analyzer, expected);
         }
 
         /// <summary>
@@ -407,19 +409,6 @@ namespace MSTest.Analyzer.Helpers
             }
 
             return builder.ToString();
-        }
-
-        /// <summary>
-        /// General method that gets a collection of actual diagnostics found in the source after the analyzer is run,
-        /// then verifies each of them.
-        /// </summary>
-        /// <param name="sources">An array of strings to create source documents from to run the analyzers on</param>
-        /// <param name="analyzer">The analyzer to be run on the source code</param>
-        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources</param>
-        private void VerifyDiagnostics(string[] sources, DiagnosticAnalyzer analyzer, params DiagnosticResult[] expected)
-        {
-            var diagnostics = GetSortedDiagnostics(sources, analyzer);
-            VerifyDiagnosticResults(diagnostics, analyzer, expected);
         }
     }
 }

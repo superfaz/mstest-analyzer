@@ -9,25 +9,25 @@ using System.Linq;
 namespace MSTest.Analyzer
 {
     /// <summary>
-    /// Checks that all (concrete) public classes of a test project are marked with the [TestClass] attribute.
+    /// Checks that none of the internal classes of a test project are marked with the [TestClass] attribute.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class MT1001PublicClassShouldHaveTestAttribute : DiagnosticAnalyzer
+    public class MT1002Analyzer : DiagnosticAnalyzer
     {
         /// <summary>
-        /// The ID for diagnostics produced by the <see cref="MT1001PublicClassShouldHaveTestAttribute"/> analyzer.
+        /// The ID for diagnostics produced by the <see cref="MT1002Analyzer"/> analyzer.
         /// </summary>
-        public const string DiagnosticId = "MT1001";
+        public static readonly string DiagnosticId = "MT1002";
 
         /// <summary>
         /// The title of the rule.
         /// </summary>
-        private const string Title = "Public class should have a test attribute";
+        private const string Title = "Internal class should not have a test attribute";
 
         /// <summary>
         /// The message format used by the rule.
         /// </summary>
-        private const string MessageFormat = "The class '{0}' should be marked with the [TestClass] attribute";
+        private const string MessageFormat = "The class '{0}' should not be marked with the [TestClass] attribute";
 
         /// <summary>
         /// The category of the rule.
@@ -63,15 +63,15 @@ namespace MSTest.Analyzer
         /// <param name="context">The current analysis context.</param>
         private static void HandleNamedType(SymbolAnalysisContext context)
         {
-            if (context.Symbol.DeclaredAccessibility != Accessibility.Public
+            if (context.Symbol.DeclaredAccessibility == Accessibility.Public
                 || context.Symbol.IsStatic
                 || context.Symbol.IsAbstract)
             {
                 return;
             }
 
-            if (context.Symbol.GetAttributes().All(
-                a => a.AttributeClass.Name != "TestClassAttribute"))
+            if (context.Symbol.GetAttributes().Any(
+                a => a.AttributeClass.Name == "TestClassAttribute"))
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name));
             }

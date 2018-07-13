@@ -10,11 +10,11 @@ using MSTest.Analyzer.Helpers;
 namespace MSTest.Analyzer
 {
     /// <summary>
-    /// Tests the <see cref="MT1001Analyzer"/> analyzer
-    /// as well as the associated <see cref="MT1001CodeFixProvider"/> code fixer.
+    /// Tests the <see cref="MT1002Analyzer"/> analyzer
+    /// as well as the associated <see cref="MT1002CodeFixProvider"/> code fixer.
     /// </summary>
     [TestClass]
-    public class MT1001UnitTest : CodeFixVerifier
+    public class MT1002UnitTest : CodeFixVerifier
     {
         /// <summary>
         /// Tests with an empty code.
@@ -35,12 +35,10 @@ namespace MSTest.Analyzer
         {
             var test = @"
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestPackage
 {
-    [TestClass]
-    public class TypeName
+    internal class TypeName
     {   
     }
 }";
@@ -56,19 +54,21 @@ namespace TestPackage
         {
             var test = @"
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestPackage
 {
-    public class TypeName
+    [TestClass]
+    internal class TypeName
     {
     }
 }";
             var expected = new DiagnosticResult
             {
-                Id = "MT1001",
-                Message = "The class 'TypeName' should be marked with the [TestClass] attribute",
+                Id = "MT1002",
+                Message = "The class 'TypeName' should not be marked with the [TestClass] attribute",
                 Severity = DiagnosticSeverity.Warning,
-                Location = new DiagnosticResultLocation("Test0.cs", 6, 18)
+                Location = new DiagnosticResultLocation("Test0.cs", 8, 20)
             };
 
             this.VerifyCSharpDiagnostic(test, expected);
@@ -79,34 +79,33 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestPackage
 {
-    [TestClass]
-    public class TypeName
+    internal class TypeName
     {
     }
 }";
-            this.VerifyCSharpFix(test, fixtest);
+            this.VerifyCSharpFix(test, fixtest, allowNewCompilerDiagnostics: true);
         }
 
         /// <summary>
         /// Creates a new instance of the CSharp diagnostic analyzer begin tested.
         /// </summary>
         /// <returns>
-        /// A new instance of <see cref="MT1001Analyzer"/>.
+        /// A new instance of <see cref="MT1002Analyzer"/>.
         /// </returns>
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new MT1001Analyzer();
+            return new MT1002Analyzer();
         }
 
         /// <summary>
         /// Creates a new instance of the CSharp code fix begin tested.
         /// </summary>
         /// <returns>
-        /// A new instance of <see cref="MT1001CodeFixProvider"/>.
+        /// A new instance of <see cref="MT1002CodeFixProvider"/>.
         /// </returns>
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
-            return new MT1001CodeFixProvider();
+            return new MT1002CodeFixProvider();
         }
     }
 }

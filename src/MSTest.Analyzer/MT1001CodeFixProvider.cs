@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace MSTest.Analyzer
 {
     /// <summary>
-    /// Provide code fix for the <see cref="MT1001PublicClassShouldHaveTestAttribute"/> analyzer.
+    /// Provide code fix for the <see cref="MT1001Analyzer"/> analyzer.
     /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(MT1001CodeFixProvider))]
     [Shared]
@@ -24,12 +24,12 @@ namespace MSTest.Analyzer
         /// <summary>
         /// The namespace associated with the MSTest library.
         /// </summary>
-        public const string MSTestNamespace = "Microsoft.VisualStudio.TestTools.UnitTesting";
+        public static readonly string MSTestNamespace = "Microsoft.VisualStudio.TestTools.UnitTesting";
 
         /// <inheritdoc />
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(MT1001PublicClassShouldHaveTestAttribute.DiagnosticId); }
+            get { return ImmutableArray.Create(MT1001Analyzer.DiagnosticId); }
         }
 
         /// <summary>
