@@ -82,7 +82,7 @@ namespace MSTest.Analyzer
                     SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
                         SyntaxFactory.Attribute(
                             SyntaxFactory.IdentifierName("TestClass"))))
-                .WithTrailingTrivia(SyntaxFactory.Whitespace("\n")));
+                .WithTrailingTrivia(SyntaxFactory.Whitespace("\r\n")));
             root = root.ReplaceNode(node, node.WithAttributeLists(attributes));
 
             // Add the using directive
