@@ -49,6 +49,26 @@ namespace TestPackage
         }
 
         /// <summary>
+        /// Tests with a valid structure.
+        /// </summary>
+        [TestMethod]
+        public void ValidCode_NoUsing()
+        {
+            var test = @"
+using System;
+
+namespace TestPackage
+{
+    [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
+    public class TypeName
+    {
+    }
+}";
+
+            this.VerifyCSharpDiagnostic(test);
+        }
+
+        /// <summary>
         /// Tests with an invalid structure.
         /// </summary>
         [TestMethod]
@@ -85,6 +105,37 @@ namespace TestPackage
     }
 }";
             this.VerifyCSharpFix(test, fixtest);
+        }
+
+        /// <summary>
+        /// Tests with an invalid structure.
+        /// </summary>
+        [TestMethod]
+        public void InvalidCode_WrongAttribute()
+        {
+            var test = @"
+using System;
+
+namespace TestPackage
+{
+    [TestClass]
+    public class TypeName
+    {
+    }
+
+    internal class TestClassAttribute : Attribute
+    {
+    }
+}";
+            var expected = new DiagnosticResult
+            {
+                Id = "MT1001",
+                Message = "The class 'TypeName' should be marked with the [TestClass] attribute",
+                Severity = DiagnosticSeverity.Warning,
+                Location = new DiagnosticResultLocation("Test0.cs", 7, 18)
+            };
+
+            this.VerifyCSharpDiagnostic(test, expected);
         }
 
         /// <summary>

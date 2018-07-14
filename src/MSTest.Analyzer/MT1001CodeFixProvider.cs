@@ -21,11 +21,6 @@ namespace MSTest.Analyzer
     [Shared]
     public class MT1001CodeFixProvider : CodeFixProvider
     {
-        /// <summary>
-        /// The namespace associated with the MSTest library.
-        /// </summary>
-        public static readonly string MSTestNamespace = "Microsoft.VisualStudio.TestTools.UnitTesting";
-
         /// <inheritdoc />
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
@@ -62,7 +57,7 @@ namespace MSTest.Analyzer
         {
             var compilationUnit = root.AncestorsAndSelf().OfType<CompilationUnitSyntax>().First();
             var updated = compilationUnit.AddUsings(
-                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(MSTestNamespace)));
+                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(MSTestConstants.Namespace)));
 
             return root.ReplaceNode(compilationUnit, updated);
         }
@@ -81,7 +76,7 @@ namespace MSTest.Analyzer
                 SyntaxFactory.AttributeList(
                     SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
                         SyntaxFactory.Attribute(
-                            SyntaxFactory.IdentifierName("TestClass"))))
+                            SyntaxFactory.IdentifierName(MSTestConstants.TestClass.Replace("Attribute", string.Empty)))))
                 .WithTrailingTrivia(SyntaxFactory.Whitespace("\r\n")));
             root = root.ReplaceNode(node, node.WithAttributeLists(attributes));
 

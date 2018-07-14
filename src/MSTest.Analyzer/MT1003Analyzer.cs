@@ -75,9 +75,9 @@ namespace MSTest.Analyzer
             {
                 throw new InvalidOperationException("symbol can't be null or not represent a method");
             }
-    
+
             if (context.Symbol.GetAttributes().All(
-                a => a.AttributeClass.Name != "TestMethodAttribute"))
+                a => a.AttributeClass.Name != MSTestConstants.TestMethod))
             {
                 string type = symbol.ContainingType.Name;
                 string method = symbol.Name;

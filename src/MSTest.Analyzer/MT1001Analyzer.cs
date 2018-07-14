@@ -70,8 +70,9 @@ namespace MSTest.Analyzer
                 return;
             }
 
-            if (context.Symbol.GetAttributes().All(
-                a => a.AttributeClass.Name != "TestClassAttribute"))
+            if (!context.Symbol.GetAttributes().Any(
+                a => a.AttributeClass.Name == MSTestConstants.TestClass
+                && a.AttributeClass.GetNamespace() == MSTestConstants.Namespace))
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name));
             }

@@ -67,13 +67,13 @@ namespace MSTest.Analyzer
             foreach (var list in node.AttributeLists)
             {
                 if (list.Attributes.Count == 1
-                    && list.Attributes.First().Name.ToString() == "TestClass")
+                    && list.Attributes.First().IsTestClassAttribute())
                 {
                     nodesToRemove.Add(list);
                 }
                 else if (list.Attributes.Count > 1)
                 {
-                    nodesToRemove.AddRange(list.Attributes.Where(a => a.Name.ToString() == "TestClass"));
+                    nodesToRemove.AddRange(list.Attributes.Where(a => a.IsTestClassAttribute()));
                 }
             }
 
