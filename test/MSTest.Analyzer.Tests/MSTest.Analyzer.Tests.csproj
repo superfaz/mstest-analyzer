@@ -15,4 +15,10 @@
     <ProjectReference Include="..\..\src\MSTest.Analyzer\MSTest.Analyzer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="FakeValidTest.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>
