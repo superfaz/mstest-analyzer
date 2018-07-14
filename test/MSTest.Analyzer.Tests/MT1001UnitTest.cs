@@ -41,7 +41,7 @@ namespace TestPackage
 {
     [TestClass]
     public class TypeName
-    {   
+    {
     }
 }";
 
