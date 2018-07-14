@@ -14,8 +14,9 @@ A .Net analyzer that helps to avoid basic mistakes with the MSTest framework
 
 # Implemented checks
 
-| Code   | Description                                     |
-|--------|-------------------------------------------------|
-| MT1001 | Public class should have a test attribute       |
-| MT1002 | Internal class should not have a test attribute |
-| MT1003 | Public method should have a test attribute      |
+| Code   | Description                                        |
+|--------|----------------------------------------------------|
+| MT1001 | Public class should have a test attribute          |
+| MT1002 | Internal class should not have a test attribute    |
+| MT1003 | Public method should have a test attribute         |
+| MT1004 | Non-Public method should not have a test attribute |

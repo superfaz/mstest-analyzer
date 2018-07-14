@@ -26,5 +26,21 @@ namespace MSTest.Analyzer
             return attribute.Name.ToString() == "TestClass"
                 || attribute.Name.ToString() == "TestClassAttribute";
         }
+
+        /// <summary>
+        /// Checks that an attribute is representing the [TestMethod] attribute.
+        /// </summary>
+        /// <param name="attribute">The attribute to check.</param>
+        /// <returns><c>true</c> if the attribute is [TestMethod]; otherwise <c>false</c>.</returns>
+        public static bool IsTestMethodttribute(this AttributeSyntax attribute)
+        {
+            if (attribute == null)
+            {
+                throw new ArgumentNullException(nameof(attribute));
+            }
+
+            return attribute.Name.ToString() == "TestMethod"
+                || attribute.Name.ToString() == "TestMethodAttribute";
+        }
     }
 }

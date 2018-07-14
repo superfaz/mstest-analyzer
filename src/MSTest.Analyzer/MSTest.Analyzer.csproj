@@ -20,27 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MT1003CodeFixProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MT1003Analyzer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MT1002CodeFixProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MT1001CodeFixProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MT1001Analyzer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MT1002Analyzer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 
