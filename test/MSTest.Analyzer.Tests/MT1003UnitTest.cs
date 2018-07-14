@@ -10,11 +10,11 @@ using MSTest.Analyzer.Helpers;
 namespace MSTest.Analyzer
 {
     /// <summary>
-    /// Tests the <see cref="MT1001Analyzer"/> analyzer
-    /// as well as the associated <see cref="MT1001CodeFixProvider"/> code fixer.
+    /// Tests the <see cref="MT1003Analyzer"/> analyzer
+    /// as well as the associated <see cref="MT1003CodeFixProvider"/> code fixer.
     /// </summary>
     [TestClass]
-    public class MT1001UnitTest : CodeFixVerifier
+    public class MT1003UnitTest : CodeFixVerifier
     {
         /// <summary>
         /// Tests with an empty code.
@@ -42,6 +42,10 @@ namespace TestPackage
     [TestClass]
     public class TypeName
     {
+        [TestMethod]
+        public void MethodName()
+        {
+        }
     }
 }";
 
@@ -59,16 +63,20 @@ using System;
 
 namespace TestPackage
 {
+    [TestClass]
     public class TypeName
     {
+        public void MethodName()
+        {
+        }
     }
 }";
             var expected = new DiagnosticResult
             {
-                Id = "MT1001",
-                Message = "The class 'TypeName' should be marked with the [TestClass] attribute",
+                Id = "MT1003",
+                Message = "The method 'TypeName.MethodName' should be marked with the [TestMethod] attribute",
                 Severity = DiagnosticSeverity.Warning,
-                Location = new DiagnosticResultLocation("Test0.cs", 6, 18)
+                Location = new DiagnosticResultLocation("Test0.cs", 9, 21)
             };
 
             this.VerifyCSharpDiagnostic(test, expected);
@@ -82,6 +90,10 @@ namespace TestPackage
     [TestClass]
     public class TypeName
     {
+        [TestMethod]
+        public void MethodName()
+        {
+        }
     }
 }";
             this.VerifyCSharpFix(test, fixtest);
@@ -91,22 +103,22 @@ namespace TestPackage
         /// Creates a new instance of the CSharp diagnostic analyzer begin tested.
         /// </summary>
         /// <returns>
-        /// A new instance of <see cref="MT1001Analyzer"/>.
+        /// A new instance of <see cref="MT1003Analyzer"/>.
         /// </returns>
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new MT1001Analyzer();
+            return new MT1003Analyzer();
         }
 
         /// <summary>
         /// Creates a new instance of the CSharp code fix begin tested.
         /// </summary>
         /// <returns>
-        /// A new instance of <see cref="MT1001CodeFixProvider"/>.
+        /// A new instance of <see cref="MT1003CodeFixProvider"/>.
         /// </returns>
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
-            return new MT1001CodeFixProvider();
+            return new MT1003CodeFixProvider();
         }
     }
 }

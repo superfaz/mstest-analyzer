@@ -20,6 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="MT1003CodeFixProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MT1003Analyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MT1002CodeFixProvider.cs">
       <SubType>Code</SubType>
     </Compile>
