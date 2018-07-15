@@ -27,7 +27,7 @@ namespace MSTest.Analyzer
         /// <summary>
         /// The message format used by the rule.
         /// </summary>
-        private const string MessageFormat = "The method '{0}.{1}' should be marked with one of the test attribute";
+        private const string MessageFormat = "The method '{0}.{1}' is public and should be marked with one of the test attribute";
 
         /// <summary>
         /// The category of the rule.

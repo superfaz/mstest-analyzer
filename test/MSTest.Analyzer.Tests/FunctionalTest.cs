@@ -46,11 +46,22 @@ namespace MSTest.Analyzer
         {
             var diagnostics = await RunCompilationAsync("FakeInvalidTest.cs");
             Assert.IsNotNull(diagnostics);
-            if (diagnostics.Count() != 0)
+            var actual = diagnostics.Select(d => d.GetMessage()).ToArray();
+
+            var expected = new[]
             {
-                string message = string.Join("\r\n", diagnostics.Select(d => d.GetMessage()));
-                Assert.Fail("Some warnings have been raised:\r\n{0}", message);
-            }
+                "The method 'FakeInvalidTest.PublicAssemblyInitialize' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicAssemblyCleanup' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicClassInitialize' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicClassCleanup' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicTestInitialize' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicTestCleanup' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicTestMethod' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicTestMethodWithCategory' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.PublicDataTestMethod' is public and should be marked with one of the test attribute",
+            };
+
+            CollectionAssert.AreEquivalent(expected, actual);
         }
 
         /// <inheritdoc/>
