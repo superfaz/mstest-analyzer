@@ -18,14 +18,14 @@ namespace MSTest.Analyzer
     /// warnings are found in the file, while using MSTest features.
     /// </summary>
     [TestClass]
-    public class ValidFunctionalTest : DiagnosticVerifier
+    public class FunctionalTest : DiagnosticVerifier
     {
         /// <summary>
         /// Compiles, with the analyzers the code of the <see cref="FakeValidTest"/> class.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task Compilation()
+        public async Task FakeValidTest()
         {
             // Create the analyzers
             Type analyzerType = typeof(DiagnosticAnalyzer);
