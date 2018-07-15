@@ -1,6 +1,9 @@
 ﻿// Copyright (c) Francois Karman. All rights reserved.
 // Licensed under the MIT license.
 
+using System.Collections.Generic;
+using System.Collections.Immutable;
+
 namespace MSTest.Analyzer
 {
     /// <summary>
@@ -22,5 +25,27 @@ namespace MSTest.Analyzer
         /// The name of the TestMethod attribute.
         /// </summary>
         public const string TestMethod = "TestMethodAttribute";
+
+        /// <summary>
+        /// The attributes that can be used to mark an instance method part of a unit test.
+        /// </summary>
+        public static readonly IEnumerable<string> InstanceTestAttributes = ImmutableArray.Create(new[]
+        {
+            "TestMethodAttribute",
+            "DataTestMethodAttribute",
+            "TestInitializeAttribute",
+            "TestCleanupAttribute"
+        });
+
+        /// <summary>
+        /// The attributes that can be used to mark a static method part of a unit test.
+        /// </summary>
+        public static readonly IEnumerable<string> StaticTestAttributes = ImmutableArray.Create(new[]
+        {
+            "ClassInitializeAttribute",
+            "ClassCleanupAttribute",
+            "AssemblyInitializeAttribute",
+            "AssemblyCleanupAttribute"
+        });
     }
 }

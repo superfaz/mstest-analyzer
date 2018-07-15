@@ -28,7 +28,7 @@ namespace MSTest.Analyzer
         /// <summary>
         /// The message format used by the rule.
         /// </summary>
-        private const string MessageFormat = "The method '{0}.{1}' should not be marked with the [TestMethod] attribute";
+        private const string MessageFormat = "The method '{0}.{1}' should be public in order to be used as a test method";
 
         /// <summary>
         /// The category of the rule.
@@ -64,24 +64,26 @@ namespace MSTest.Analyzer
         /// <param name="context">The current analysis context.</param>
         private static void HandleMethod(SymbolAnalysisContext context)
         {
-            IMethodSymbol symbol = context.Symbol as IMethodSymbol;
-            if (symbol == null)
-            {
-                throw new InvalidOperationException("symbol can't be null or not represent a method");
-            }
-
-            if (symbol.DeclaredAccessibility == Accessibility.Public)
+            if (context.Symbol.DeclaredAccessibility == Accessibility.Public)
             {
                 return;
             }
 
-            if (symbol.GetAttributes().Any(
-                a => a.AttributeClass.Name == MSTestConstants.TestMethod
-                && a.AttributeClass.GetNamespace() == MSTestConstants.Namespace))
+            if (context.Symbol.IsStatic && context.Symbol.GetAttributes().Any(
+                a => a.AttributeClass.IsStaticTestMethodAttribute()))
             {
-                string type = symbol.ContainingType.Name;
-                string method = symbol.Name;
-                Diagnostic diagnostic = Diagnostic.Create(Rule, symbol.Locations[0], type, method);
+                string type = context.Symbol.ContainingType.Name;
+                string method = context.Symbol.Name;
+                Diagnostic diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], type, method);
+                context.ReportDiagnostic(diagnostic);
+            }
+
+            if (!context.Symbol.IsStatic && context.Symbol.GetAttributes().Any(
+                a => a.AttributeClass.IsInstanceTestMethodAttribute()))
+            {
+                string type = context.Symbol.ContainingType.Name;
+                string method = context.Symbol.Name;
+                Diagnostic diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], type, method);
                 context.ReportDiagnostic(diagnostic);
             }
         }
