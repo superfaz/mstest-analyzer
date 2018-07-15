@@ -22,6 +22,7 @@ namespace MSTest.Analyzer
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -30,6 +31,7 @@ namespace MSTest.Analyzer
         [AssemblyCleanup]
         public static void AssemblyCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace MSTest.Analyzer
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -47,6 +50,7 @@ namespace MSTest.Analyzer
         [ClassCleanup]
         public static void ClassCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -55,6 +59,7 @@ namespace MSTest.Analyzer
         [TestInitialize]
         public void TestInitialize()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -63,6 +68,7 @@ namespace MSTest.Analyzer
         [TestCleanup]
         public void TestCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -71,6 +77,7 @@ namespace MSTest.Analyzer
         [TestMethod]
         public void TestMethod()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -83,6 +90,7 @@ namespace MSTest.Analyzer
         [DataRow(3)]
         public void DataTestMethod(int value)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -91,6 +99,7 @@ namespace MSTest.Analyzer
         /// <param name="context">The parameter is not used.</param>
         protected static void IgnoredStatic(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -98,6 +107,7 @@ namespace MSTest.Analyzer
         /// </summary>
         protected void IgnoredInstance()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
     }
 }

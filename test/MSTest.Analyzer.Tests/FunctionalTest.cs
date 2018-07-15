@@ -28,7 +28,7 @@ namespace MSTest.Analyzer
         [TestMethod]
         public async Task FakeValidTest()
         {
-            var diagnostics = await RunCompilationAsync("FakeValidTest.cs");
+            var diagnostics = await RunCompilationAsync("FakeValidTest.cs").ConfigureAwait(false);
             Assert.IsNotNull(diagnostics);
             if (diagnostics.Count() != 0)
             {
@@ -44,7 +44,7 @@ namespace MSTest.Analyzer
         [TestMethod]
         public async Task FakeInvalidTest()
         {
-            var diagnostics = await RunCompilationAsync("FakeInvalidTest.cs");
+            var diagnostics = await RunCompilationAsync("FakeInvalidTest.cs").ConfigureAwait(false);
             Assert.IsNotNull(diagnostics);
             var actual = diagnostics.Select(d => d.GetMessage()).ToArray();
 

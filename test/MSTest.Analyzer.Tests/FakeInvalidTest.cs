@@ -22,6 +22,7 @@ namespace MSTest.Analyzer
         /// <param name="context">The parameter is not used.</param>
         public static void PublicAssemblyInitialize(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -29,6 +30,7 @@ namespace MSTest.Analyzer
         /// </summary>
         public static void PublicAssemblyCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace MSTest.Analyzer
         /// <param name="context">The parameter is not used.</param>
         public static void PublicClassInitialize(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace MSTest.Analyzer
         /// </summary>
         public static void PublicClassCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -51,6 +55,7 @@ namespace MSTest.Analyzer
         /// </summary>
         public void PublicTestInitialize()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -58,6 +63,7 @@ namespace MSTest.Analyzer
         /// </summary>
         public void PublicTestCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -65,6 +71,7 @@ namespace MSTest.Analyzer
         /// </summary>
         public void PublicTestMethod()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -73,6 +80,7 @@ namespace MSTest.Analyzer
         [TestCategory("category")]
         public void PublicTestMethodWithCategory()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -84,6 +92,7 @@ namespace MSTest.Analyzer
         [DataRow(3)]
         public void PublicDataTestMethod(int value)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -93,6 +102,7 @@ namespace MSTest.Analyzer
         [ClassInitialize]
         protected static void ProtectedClassInitialize(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -101,6 +111,7 @@ namespace MSTest.Analyzer
         [ClassCleanup]
         protected static void ProtectedClassCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -110,6 +121,7 @@ namespace MSTest.Analyzer
         [TestInitialize]
         protected void ProtectedTestInitialize(TestContext context)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -118,6 +130,7 @@ namespace MSTest.Analyzer
         [TestCleanup]
         protected void ProtectedTestCleanup()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -126,6 +139,7 @@ namespace MSTest.Analyzer
         [TestMethod]
         protected void ProtectedTestMethod()
         {
+            // Do nothing because it is only used to fake an actual test method
         }
 
         /// <summary>
@@ -136,6 +150,7 @@ namespace MSTest.Analyzer
         [DataRow(1)]
         protected void ProtectedDataTestMethod(int value)
         {
+            // Do nothing because it is only used to fake an actual test method
         }
     }
 }
