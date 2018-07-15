@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Analyzer.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
@@ -27,24 +28,25 @@ namespace MSTest.Analyzer
         [TestMethod]
         public async Task FakeValidTest()
         {
-            // Create the analyzers
-            Type analyzerType = typeof(DiagnosticAnalyzer);
-            var analyzers = typeof(MT1001Analyzer).Assembly.GetTypes()
-                .Where(t => t.IsSubclassOf(analyzerType) && !t.IsAbstract)
-                .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t))
-                .ToArray();
-
-            // Create the project
-            string fileContent = File.ReadAllText("FakeValidTest.cs");
-            Project project = CreateProject(new[] { fileContent });
-
-            // Execute the compilation
-            var compilation = await project.GetCompilationAsync();
-            var withAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create(analyzers));
-            var diagnostics = await withAnalyzers.GetAnalyzerDiagnosticsAsync();
-
+            var diagnostics = await RunCompilationAsync("FakeValidTest.cs");
             Assert.IsNotNull(diagnostics);
-            if (diagnostics.Length != 0)
+            if (diagnostics.Count() != 0)
+            {
+                string message = string.Join("\r\n", diagnostics.Select(d => d.GetMessage()));
+                Assert.Fail("Some warnings have been raised:\r\n{0}", message);
+            }
+        }
+
+        /// <summary>
+        /// Compiles, with the analyzers the code of the <see cref="FakeInvalidTest"/> class.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task FakeInvalidTest()
+        {
+            var diagnostics = await RunCompilationAsync("FakeInvalidTest.cs");
+            Assert.IsNotNull(diagnostics);
+            if (diagnostics.Count() != 0)
             {
                 string message = string.Join("\r\n", diagnostics.Select(d => d.GetMessage()));
                 Assert.Fail("Some warnings have been raised:\r\n{0}", message);
@@ -55,6 +57,32 @@ namespace MSTest.Analyzer
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             throw new NotImplementedException();
+        }
+
+        private static async Task<IEnumerable<Diagnostic>> RunCompilationAsync(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new ArgumentException("message", nameof(fileName));
+            }
+
+            // Create the analyzers
+            Type analyzerType = typeof(DiagnosticAnalyzer);
+            var analyzers = typeof(MT1001Analyzer).Assembly.GetTypes()
+                .Where(t => t.IsSubclassOf(analyzerType) && !t.IsAbstract)
+                .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t))
+                .ToArray();
+
+            // Create the project
+            string fileContent = File.ReadAllText(fileName);
+            Project project = CreateProject(new[] { fileContent });
+
+            // Execute the compilation
+            var compilation = await project.GetCompilationAsync();
+            var withAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create(analyzers));
+            var diagnostics = await withAnalyzers.GetAnalyzerDiagnosticsAsync();
+
+            return diagnostics;
         }
     }
 }

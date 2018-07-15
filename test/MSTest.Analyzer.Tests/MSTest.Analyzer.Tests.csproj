@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="FakeInvalidTest.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="FakeValidTest.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
