@@ -22,5 +22,27 @@ namespace MSTest.Analyzer
         /// The name of the TestMethod attribute.
         /// </summary>
         public const string TestMethod = "TestMethodAttribute";
+
+        /// <summary>
+        /// The attributes that can be used to mark an instance method part of a unit test.
+        /// </summary>
+        public static readonly string[] InstanceTestAttributes = new[]
+        {
+            "TestMethodAttribute",
+            "DataTestMethodAttribute",
+            "TestInitializeAttribute",
+            "TestCleanupAttribute"
+        };
+
+        /// <summary>
+        /// The attributes that can be used to mark a static method part of a unit test.
+        /// </summary>
+        public static readonly string[] StaticTestAttributes = new[]
+        {
+            "ClassInitializeAttribute",
+            "ClassCleanupAttribute",
+            "AssemblyInitializeAttribute",
+            "AssemblyCleanupAttribute"
+        };
     }
 }

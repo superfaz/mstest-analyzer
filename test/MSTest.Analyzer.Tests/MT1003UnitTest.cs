@@ -74,7 +74,7 @@ namespace TestPackage
             var expected = new DiagnosticResult
             {
                 Id = "MT1003",
-                Message = "The method 'TypeName.MethodName' should be marked with the [TestMethod] attribute",
+                Message = "The method 'TypeName.MethodName' should be marked with one of the test attribute",
                 Severity = DiagnosticSeverity.Warning,
                 Location = new DiagnosticResultLocation("Test0.cs", 9, 21)
             };

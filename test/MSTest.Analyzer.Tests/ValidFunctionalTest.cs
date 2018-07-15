@@ -6,11 +6,9 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Analyzer.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MSTest.Analyzer
