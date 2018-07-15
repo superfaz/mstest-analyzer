@@ -112,6 +112,35 @@ namespace MSTest.Analyzer.Helpers
         }
 
         /// <summary>
+        /// Creates a project using the inputted strings as sources.
+        /// </summary>
+        /// <param name="sources">Classes in the form of strings</param>
+        /// <returns>A Project created out of the Documents created from the source strings</returns>
+        protected static Project CreateProject(string[] sources)
+        {
+            string fileNamePrefix = DefaultFilePathPrefix;
+            string fileExt = DefaultFileExt;
+
+            var projectId = ProjectId.CreateNewId(debugName: TestProjectName);
+
+            var solution = new AdhocWorkspace()
+                .CurrentSolution
+                .AddProject(projectId, TestProjectName, TestProjectName, LanguageNames.CSharp)
+                .AddMetadataReferences(projectId, References);
+
+            int count = 0;
+            foreach (var source in sources)
+            {
+                var newFileName = fileNamePrefix + count + "." + fileExt;
+                var documentId = DocumentId.CreateNewId(projectId, debugName: newFileName);
+                solution = solution.AddDocument(documentId, newFileName, SourceText.From(source));
+                count++;
+            }
+
+            return solution.GetProject(projectId);
+        }
+
+        /// <summary>
         /// Get the CSharp analyzer being tested - to be implemented in non-abstract class
         /// </summary>
         /// <returns>
@@ -141,35 +170,6 @@ namespace MSTest.Analyzer.Helpers
             var analyzer = this.GetCSharpDiagnosticAnalyzer();
             var diagnostics = GetSortedDiagnostics(sources, analyzer);
             VerifyDiagnosticResults(diagnostics, analyzer, expected);
-        }
-
-        /// <summary>
-        /// Creates a project using the inputted strings as sources.
-        /// </summary>
-        /// <param name="sources">Classes in the form of strings</param>
-        /// <returns>A Project created out of the Documents created from the source strings</returns>
-        protected static Project CreateProject(string[] sources)
-        {
-            string fileNamePrefix = DefaultFilePathPrefix;
-            string fileExt = DefaultFileExt;
-
-            var projectId = ProjectId.CreateNewId(debugName: TestProjectName);
-
-            var solution = new AdhocWorkspace()
-                .CurrentSolution
-                .AddProject(projectId, TestProjectName, TestProjectName, LanguageNames.CSharp)
-                .AddMetadataReferences(projectId, References);
-
-            int count = 0;
-            foreach (var source in sources)
-            {
-                var newFileName = fileNamePrefix + count + "." + fileExt;
-                var documentId = DocumentId.CreateNewId(projectId, debugName: newFileName);
-                solution = solution.AddDocument(documentId, newFileName, SourceText.From(source));
-                count++;
-            }
-
-            return solution.GetProject(projectId);
         }
 
         /// <summary>

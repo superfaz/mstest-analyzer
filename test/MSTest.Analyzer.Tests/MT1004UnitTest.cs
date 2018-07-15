@@ -84,14 +84,14 @@ namespace TestPackage
             var expected1 = new DiagnosticResult
             {
                 Id = "MT1004",
-                Message = "The method 'TypeName.InternalMethodName' should not be marked with the [TestMethod] attribute",
+                Message = "The method 'TypeName.InternalMethodName' should be public in order to be used as a test method",
                 Severity = DiagnosticSeverity.Warning,
                 Location = new DiagnosticResultLocation("Test0.cs", 11, 23)
             };
             var expected2 = new DiagnosticResult
             {
                 Id = "MT1004",
-                Message = "The method 'TypeName.PrivateMethodName' should not be marked with the [TestMethod] attribute",
+                Message = "The method 'TypeName.PrivateMethodName' should be public in order to be used as a test method",
                 Severity = DiagnosticSeverity.Warning,
                 Location = new DiagnosticResultLocation("Test0.cs", 16, 22)
             };

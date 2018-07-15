@@ -59,6 +59,12 @@ namespace MSTest.Analyzer
                 "The method 'FakeInvalidTest.PublicTestMethod' is public and should be marked with one of the test attribute",
                 "The method 'FakeInvalidTest.PublicTestMethodWithCategory' is public and should be marked with one of the test attribute",
                 "The method 'FakeInvalidTest.PublicDataTestMethod' is public and should be marked with one of the test attribute",
+                "The method 'FakeInvalidTest.ProtectedClassInitialize' should be public in order to be used as a test method",
+                "The method 'FakeInvalidTest.ProtectedClassCleanup' should be public in order to be used as a test method",
+                "The method 'FakeInvalidTest.ProtectedTestInitialize' should be public in order to be used as a test method",
+                "The method 'FakeInvalidTest.ProtectedTestCleanup' should be public in order to be used as a test method",
+                "The method 'FakeInvalidTest.ProtectedTestMethod' should be public in order to be used as a test method",
+                "The method 'FakeInvalidTest.ProtectedDataTestMethod' should be public in order to be used as a test method",
             };
 
             CollectionAssert.AreEquivalent(expected, actual);

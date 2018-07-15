@@ -84,5 +84,20 @@ namespace MSTest.Analyzer
         public void DataTestMethod(int value)
         {
         }
+
+        /// <summary>
+        /// A non-public method that should be ignored by the analyzer.
+        /// </summary>
+        /// <param name="context">The parameter is not used.</param>
+        protected static void IgnoredStatic(TestContext context)
+        {
+        }
+
+        /// <summary>
+        /// A non-public method that should be ignored by the analyzer.
+        /// </summary>
+        protected void IgnoredInstance()
+        {
+        }
     }
 }

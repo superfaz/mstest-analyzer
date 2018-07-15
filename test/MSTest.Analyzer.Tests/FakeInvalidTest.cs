@@ -85,5 +85,57 @@ namespace MSTest.Analyzer
         public void PublicDataTestMethod(int value)
         {
         }
+
+        /// <summary>
+        /// Wrong accessibility of the ClassInitialize.
+        /// </summary>
+        /// <param name="context">The parameter is not used.</param>
+        [ClassInitialize]
+        protected static void ProtectedClassInitialize(TestContext context)
+        {
+        }
+
+        /// <summary>
+        /// Wrong accessibility of the ClassCleanup.
+        /// </summary>
+        [ClassCleanup]
+        protected static void ProtectedClassCleanup()
+        {
+        }
+
+        /// <summary>
+        /// Wrong accessibility of the TestInitialize.
+        /// </summary>
+        /// <param name="context">The parameter is not used.</param>
+        [TestInitialize]
+        protected void ProtectedTestInitialize(TestContext context)
+        {
+        }
+
+        /// <summary>
+        /// Wrong accessibility of the TestCleanup.
+        /// </summary>
+        [TestCleanup]
+        protected void ProtectedTestCleanup()
+        {
+        }
+
+        /// <summary>
+        /// Wrong accessibility of the TestMethod.
+        /// </summary>
+        [TestMethod]
+        protected void ProtectedTestMethod()
+        {
+        }
+
+        /// <summary>
+        /// Wrong accessibility of the DataTestMethod.
+        /// </summary>
+        /// <param name="value">The parameter is not used.</param>
+        [DataTestMethod]
+        [DataRow(1)]
+        protected void ProtectedDataTestMethod(int value)
+        {
+        }
     }
 }
