@@ -7,7 +7,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageId>MSTest.Analyzer</PackageId>
+    <PackageId>mstest-analyzer</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>A .Net analyzer that helps to avoid basic mistakes with the MSTest framework</Description>
     <PackageTags>MSTest DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
