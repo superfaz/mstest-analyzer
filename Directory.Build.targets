@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!-- Force the documentation of all projects -->
     <!-- Part of the target because OutputPath need to be initialized -->
-    <DocumentationFile>$(OutputPath)OxyBot.App.xml</DocumentationFile>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
