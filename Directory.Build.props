@@ -2,11 +2,10 @@
 
   <!-- Shared information for all assemblies -->
   <PropertyGroup>
-    <Version>0.4.0</Version>
+    <Version>0.0.0</Version>
     <Product>mstest-analyzer</Product>
     <Authors>Francois Karman</Authors>
     <AssemblyVersion>$(Version).0</AssemblyVersion>
-    <PackageVersion>$(Version)</PackageVersion>
     <Company />
 
     <Copyright>Copyright (c) 2018 Francois Karman. All rights reserved.</Copyright>
