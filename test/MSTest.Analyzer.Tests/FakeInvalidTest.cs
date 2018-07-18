@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MSTest.Analyzer
 {
@@ -20,6 +21,7 @@ namespace MSTest.Analyzer
         /// Initializes all tests within the project.
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         public static void PublicAssemblyInitialize(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -37,6 +39,7 @@ namespace MSTest.Analyzer
         /// Initializes all tests within this class.
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         public static void PublicClassInitialize(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -90,6 +93,7 @@ namespace MSTest.Analyzer
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         public void PublicDataTestMethod(int value)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -100,6 +104,7 @@ namespace MSTest.Analyzer
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
         [ClassInitialize]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         protected static void ProtectedClassInitialize(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -119,6 +124,7 @@ namespace MSTest.Analyzer
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
         [TestInitialize]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         protected void ProtectedTestInitialize(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -148,6 +154,7 @@ namespace MSTest.Analyzer
         /// <param name="value">The parameter is not used.</param>
         [DataTestMethod]
         [DataRow(1)]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         protected void ProtectedDataTestMethod(int value)
         {
             // Do nothing because it is only used to fake an actual test method

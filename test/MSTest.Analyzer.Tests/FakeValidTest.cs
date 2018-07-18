@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MSTest.Analyzer
 {
@@ -20,6 +21,7 @@ namespace MSTest.Analyzer
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
         [AssemblyInitialize]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         public static void AssemblyInitialize(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -39,6 +41,7 @@ namespace MSTest.Analyzer
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
         [ClassInitialize]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         public static void ClassInitialize(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -88,6 +91,7 @@ namespace MSTest.Analyzer
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         public void DataTestMethod(int value)
         {
             // Do nothing because it is only used to fake an actual test method
@@ -97,6 +101,7 @@ namespace MSTest.Analyzer
         /// A non-public method that should be ignored by the analyzer.
         /// </summary>
         /// <param name="context">The parameter is not used.</param>
+        [SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Needed for testing purpose")]
         protected static void IgnoredStatic(TestContext context)
         {
             // Do nothing because it is only used to fake an actual test method
