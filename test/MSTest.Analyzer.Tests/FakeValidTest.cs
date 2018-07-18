@@ -114,5 +114,12 @@ namespace MSTest.Analyzer
         {
             // Do nothing because it is only used to fake an actual test method
         }
+
+        private class PrivateClass
+        {
+            public void NotUsedMethod()
+            {
+            }
+        }
     }
 }
