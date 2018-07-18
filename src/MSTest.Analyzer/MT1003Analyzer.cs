@@ -63,9 +63,10 @@ namespace MSTest.Analyzer
         /// <param name="context">The current analysis context.</param>
         private static void HandleMethod(SymbolAnalysisContext context)
         {
-            if (context.Symbol.DeclaredAccessibility != Accessibility.Public)
+            if (context.Symbol.DeclaredAccessibility != Accessibility.Public
+             || context.Symbol.ContainingType.DeclaredAccessibility != Accessibility.Public)
             {
-                // Ignore non public methods
+                // Ignore non exposed methods
                 return;
             }
 
