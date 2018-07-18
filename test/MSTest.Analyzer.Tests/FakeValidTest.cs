@@ -112,7 +112,16 @@ namespace MSTest.Analyzer
         /// </summary>
         protected void IgnoredInstance()
         {
-            // Do nothing because it is only used to fake an actual test method
+            // Do nothing because it is only used to fake a not exposed method
+        }
+
+        [SuppressMessage("Microsoft.Performance", "CA1812", Justification = "Needed for testing purpose")]
+        private class PrivateClass
+        {
+            public void NotUsedMethod()
+            {
+                // Do nothing because it is only used to fake a not exposed method
+            }
         }
     }
 }
