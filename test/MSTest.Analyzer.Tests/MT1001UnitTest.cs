@@ -108,6 +108,52 @@ namespace TestPackage
         }
 
         /// <summary>
+        /// Tests reformatting is correct with documentation blocks
+        /// </summary>
+        [TestMethod]
+        public void ReformatsCorrectlyWithDocumentation()
+        {
+            var test = @"
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace TestPackage
+{
+    /// <summary>
+    /// Tests the <see cref=""TypeName""/> class.
+    /// </summary>
+    public class TypeName
+    {
+    }
+}";
+
+            var expected = new DiagnosticResult
+            {
+                Id = "MT1001",
+                Message = "The class 'TypeName' should be marked with the [TestClass] attribute",
+                Severity = DiagnosticSeverity.Warning,
+                Location = new DiagnosticResultLocation("Test0.cs", 9, 18)
+            };
+
+            this.VerifyCSharpDiagnostic(test, expected);
+
+            var fixtest = @"
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace TestPackage
+{
+    /// <summary>
+    /// Tests the <see cref=""TypeName""/> class.
+    /// </summary>
+    [TestClass]
+    public class TypeName
+    {
+    }
+}";
+
+            this.VerifyCSharpFix(test, fixtest);
+        }
+
+        /// <summary>
         /// Tests with an invalid structure.
         /// </summary>
         [TestMethod]

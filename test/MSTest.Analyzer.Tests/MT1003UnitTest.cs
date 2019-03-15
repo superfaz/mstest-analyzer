@@ -100,6 +100,66 @@ namespace TestPackage
         }
 
         /// <summary>
+        /// Tests reformatting is correct with documentation blocks
+        /// </summary>
+        [TestMethod]
+        public void ReformatsCorrectlyWithDocumentation()
+        {
+            var test = @"
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace MyTest
+{
+    /// <summary>
+    /// Tests the <see cref=""MyClass""/> class.
+    /// </summary>
+    [TestClass]
+    public class MyClassTest
+    {
+        /// <summary>
+        /// Tests the <see cref=""MyClass.Constructor""/> constructor.
+        /// </summary>
+        public void Constructor()
+        {
+        }
+    }
+}";
+
+            var expected = new DiagnosticResult
+            {
+                Id = "MT1003",
+                Message = "The method 'MyClassTest.Constructor' is public and should be marked with one of the test attribute",
+                Severity = DiagnosticSeverity.Warning,
+                Location = new DiagnosticResultLocation("Test0.cs", 15, 21)
+            };
+
+            this.VerifyCSharpDiagnostic(test, expected);
+
+            var fixtest = @"
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace MyTest
+{
+    /// <summary>
+    /// Tests the <see cref=""MyClass""/> class.
+    /// </summary>
+    [TestClass]
+    public class MyClassTest
+    {
+        /// <summary>
+        /// Tests the <see cref=""MyClass.Constructor""/> constructor.
+        /// </summary>
+        [TestMethod]
+        public void Constructor()
+        {
+        }
+    }
+}";
+
+            this.VerifyCSharpFix(test, fixtest);
+        }
+
+        /// <summary>
         /// Creates a new instance of the CSharp diagnostic analyzer begin tested.
         /// </summary>
         /// <returns>
