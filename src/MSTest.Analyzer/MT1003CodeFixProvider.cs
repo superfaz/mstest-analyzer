@@ -56,10 +56,18 @@ namespace MSTest.Analyzer
         private static SyntaxNode AddTestUsingDirective(SyntaxNode root)
         {
             var compilationUnit = root.AncestorsAndSelf().OfType<CompilationUnitSyntax>().First();
-            var updated = compilationUnit.AddUsings(
-                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(MSTestConstants.Namespace)));
+            var updatedCompilationUnit = compilationUnit;
 
-            return root.ReplaceNode(compilationUnit, updated);
+            var existing = compilationUnit.Usings
+                .FirstOrDefault(x => x.GetText().ToString().Contains(MSTestConstants.Namespace));
+
+            if (existing == null)
+            {
+                updatedCompilationUnit = compilationUnit.AddUsings(
+                    SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(MSTestConstants.Namespace)));
+            }
+
+            return root.ReplaceNode(compilationUnit, updatedCompilationUnit);
         }
 
         private static async Task<Document> AddTestMethodAttributeAsync(Document document, Diagnostic diagnostic, CancellationToken cancellationToken)
@@ -72,13 +80,14 @@ namespace MSTest.Analyzer
                 .OfType<MethodDeclarationSyntax>()
                 .First();
 
+            var leadingTrivia = node.GetLeadingTrivia();
             var attributes = node.AttributeLists.Add(
                 SyntaxFactory.AttributeList(
                     SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
                         SyntaxFactory.Attribute(
                             SyntaxFactory.IdentifierName(MSTestConstants.TestMethod.Replace("Attribute", string.Empty)))))
                 .WithTrailingTrivia(SyntaxFactory.Whitespace("\r\n")));
-            root = root.ReplaceNode(node, node.WithAttributeLists(attributes));
+            root = root.ReplaceNode(node, node.WithoutLeadingTrivia().WithAttributeLists(attributes).WithLeadingTrivia(leadingTrivia));
 
             // Add the using directive
             root = AddTestUsingDirective(root);
